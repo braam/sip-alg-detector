@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   sip-alg-detector:
     build: .
@@ -19,3 +17,4 @@ services:
       - "30001:30001/udp"
       - "30002:30002/udp"
       - "50000:50000/udp"
+    network_mode: "host" # Ports above not needed, but for completeness. Better to use network mode host without extra Docker NAT-ing.
