@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  sip-alg-detector:
+    build: .
+    container_name: sip-alg-server
+    restart: always
+    ports:
+      # SIP UDP Ports
+      - "5060:5060/udp"
+      - "6060:6060/udp"
+      - "5678:5678/udp"
+      - "6050:6050/udp"
+      # SIP TLS Ports
+      - "5061:5061/tcp"
+      - "6061:6061/tcp"
+      # RTP Echo Ports
+      - "30000:30000/udp"
+      - "30001:30001/udp"
+      - "30002:30002/udp"
+      - "50000:50000/udp"
