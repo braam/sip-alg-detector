@@ -18,3 +18,8 @@ services:
       - "30002:30002/udp"
       - "50000:50000/udp"
     network_mode: "host" # Ports above not needed, but for completeness. Better to use network mode host without extra Docker NAT-ing.
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'    # Max 50% from 1 CPU core
+          memory: 128M   # Max 128MB RAM
