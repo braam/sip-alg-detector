@@ -42,6 +42,13 @@ SIP_UDP_PORTS.forEach(port => {
         if (msg.length > 2000) return;
 
         const rawMsg = msg.toString('utf8', 0, 2000);
+        // --- SECURITY: VALID CLIENT CHECK ---
+        const pAlSaRaw = getHeader('P-AL-SA');
+        if (!pAlSaRaw) {
+            // Optioneel: loggen wie er probeert te scannen
+            // console.log(`[SECURITY] Unauthorized SIP scan from ${rinfo.address} dropped.`);
+            return; // Stop onmiddellijk, stuur geen antwoord
+        }
         console.log(`[UDP] SIP Data on port ${port} from ${rinfo.address}:${rinfo.port}`);
 
         if (rawMsg.trim().length === 0) {
